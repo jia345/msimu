@@ -1,5 +1,5 @@
 # msimu
-This is a simulator for SNMP/NETCONF/etc. in order to test network management system, especially with massive devices deployed. Regarding SNMP part, it's based on snmpsim (http://snmplabs.com/snmpsim).
+This is a SNMP agent simulation tool/environment for network management system testing, especially simulating the case that massive devices are deployed in the field. Basically, it's based on snmpsim (http://snmplabs.com/snmpsim).
 
 ```
 #
