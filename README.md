@@ -24,4 +24,9 @@ cp -r mib $HOME/.snmp/mibs
 snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=127.0.0.1:1024
 # test the simulator
 snmpwalk -v2c -c public 127.0.0.1:1024 system
+
+# Trap destination register. Add one row in below table
+#  - iso.org.dod.internet.snmpV2.snmpModules.snmpTargetMIB.snmpTargetObjects.snmpTargetAddrTable
+
+# FREE mib browser: snmpB (https://sourceforge.net/p/snmpb). Strongly recommend.
 ```
