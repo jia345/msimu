@@ -25,6 +25,8 @@ snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=127.0.0.1:1024
 # test the simulator
 snmpwalk -v2c -c public 127.0.0.1:1024 system
 
+snmptrap.py -v2c -c nms_snmp 10.243.68.121 123 1.3.6.1.6.3.1.1.5.2 SNMPv2-MIB::sysName.0 = 'mysystem'
+
 # Trap destination register. Add one row in below table
 #  - iso.org.dod.internet.snmpV2.snmpModules.snmpTargetMIB.snmpTargetObjects.snmpTargetAddrTable
 
