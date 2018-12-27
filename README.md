@@ -34,7 +34,9 @@ mv xxx.snmprec ~/.snmpsim/data/<community_str>.snmprec
 sudo apt install redis
 
 # start one SNMP agent simulator
-snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=127.0.0.1:1024
+# snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=127.0.0.1:1024
+snmpsimd.py --variation-module-options=redis:host:127.0.0.1,port:6379,db:0
+
 # test the simulator
 snmpwalk -v2c -c public 127.0.0.1:1024 system
 
