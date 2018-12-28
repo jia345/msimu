@@ -11,12 +11,15 @@ export https_proxy="http://a.b.c.d:8000"
 sudo apt install snmp
 sudo apt install libsnmp-dev
 sudo apt install virtualenv
+sudo apt install redis
 
 mkdir msimu
 cd msimu
 virtualenv venv
 sudo pip install --upgrade pip
 pip install snmpsim
+pip install snmpclitools
+pip install redis
 source venv/bin/activate
 
 # Put MIB files under $HOME/.snmp/mibs or other valid MIB paths.
