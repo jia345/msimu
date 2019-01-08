@@ -48,5 +48,12 @@ snmptrap.py -v2c -c nms_snmp 10.243.68.121 123 1.3.6.1.6.3.1.1.5.2 SNMPv2-MIB::s
 # Trap destination register. Add one row in below table
 #  - iso.org.dod.internet.snmpV2.snmpModules.snmpTargetMIB.snmpTargetObjects.snmpTargetAddrTable
 
+#
+# wireshark to capture SNMP packets
+#
+sudo apt-get install wireshark
+sudo usermod -a -G wireshark $USER
+tshark -Y "snmp && (ip.src == 135.251.97.134 || ip.dst == 135.251.97.134)" -i ens192
+
 # FREE mib browser: snmpB (https://sourceforge.net/p/snmpb). Strongly recommend.
 ```
