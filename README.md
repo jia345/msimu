@@ -8,19 +8,19 @@ This is a SNMP agent simulation tool/environment for network management system t
 export http_proxy="http://a.b.c.d:8000"
 export https_proxy="http://a.b.c.d:8000"
 
-sudo apt install snmp
-sudo apt install libsnmp-dev
+# sudo apt install snmp  # optional
+# sudo apt install libsnmp-dev  # optional
 sudo apt install virtualenv
 sudo apt install redis
+sudo pip install --upgrade pip
 
 mkdir msimu
 cd msimu
 virtualenv venv
-sudo pip install --upgrade pip
+source venv/bin/activate
 pip install snmpsim
 pip install snmpclitools
 pip install redis
-source venv/bin/activate
 
 # Put MIB files under $HOME/.snmp/mibs or other valid MIB paths.
 # Regarding valid MIB paths, run 'net-snmp-config --default-mibdirs' to check.
@@ -28,7 +28,7 @@ source venv/bin/activate
 mkdir $HOME/.snmp
 cp mibs/* $HOME/.snmp/mibs/
 
-snmprec.py --community=nms_snmp --agent-udpv4-endpoint=a.b.c.d --start-oid=1.3.6.1.4.1.7483 --stop-oid=1.3.6.1.5 --output-file=<recfile>.snmprec
+snmprec.py --community=nms_snmp --agent-udpv4-endpoint=a.b.c.d --start-oid=1.3.6.1.4.1.7483 --stop-oid=1.3.6.1.5 --output-file=<recfile>.snmprec --variation-module=redis --variation-module-options=host:127.0.0.1,port:6379,db:0,key-spaces-id:1830
 
 # put the captured MIB data as <communicty_str>.snmprec
 mv xxx.snmprec ~/.snmpsim/data/<community_str>.snmprec
@@ -37,8 +37,8 @@ mv xxx.snmprec ~/.snmpsim/data/<community_str>.snmprec
 sudo apt install redis
 
 # start one SNMP agent simulator
-# snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=127.0.0.1:1024
-snmpsimd.py --variation-module-options=redis:host:127.0.0.1,port:6379,db:0
+# snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=0.0.0.0:30161
+snmpsimd.py --variation-module-options=redis:host:127.0.0.1,port:6379,db:0 --agent-udpv4-endpoint=0.0.0.0:30161
 
 # test the simulator
 snmpwalk -v2c -c public 127.0.0.1:1024 system
