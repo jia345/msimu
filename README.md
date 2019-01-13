@@ -54,6 +54,18 @@ snmptrap.py -v2c -c nms_snmp 10.243.68.121 123 1.3.6.1.6.3.1.1.5.2 SNMPv2-MIB::s
 
 # Trap destination register. Add one row in below table
 #  - iso.org.dod.internet.snmpV2.snmpModules.snmpTargetMIB.snmpTargetObjects.snmpTargetAddrTable
+sudo apt install npm
+sudo npm install vue-cli -g
+python3 -m venv venv3
+source vent3/bin/activate
+pip install Flask
+
+git clone https://github.com/iview/iview-project.git bignotify
+cd bignotify
+npm install
+npm run init
+npm run dev
+npm run build // for production
 
 #
 # wireshark to capture SNMP packets
