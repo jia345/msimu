@@ -62,6 +62,7 @@ pip install Flask
 
 git clone https://github.com/iview/iview-project.git bignotify
 cd bignotify
+npm config set registry https://registry.npm.taobao.org
 npm install
 npm run init
 npm run dev
