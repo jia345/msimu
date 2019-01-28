@@ -22,6 +22,11 @@ pip install snmpsim
 pip install snmpclitools
 pip install redis
 
+#
+# PERFORMANCE IMPROVEMENT
+#
+vim snmpsim/variation/sql.py # change all %10s to %5s to reduce the length of oid
+
 # Put MIB files under $HOME/.snmp/mibs or other valid MIB paths.
 # Regarding valid MIB paths, run 'net-snmp-config --default-mibdirs' to check.
 # say the MIB files were put under mibs/
@@ -33,8 +38,10 @@ cp mibs/* $HOME/.snmp/mibs/
 # --variation-module-options=host:127.0.0.1,port:6379,db:0,key-spaces-id:1830
 #snmprec.py --community=nms_snmp --agent-udpv4-endpoint=135.251.97.134 --output-file=recdata/pss8-sql.snmprec \
 #           --variation-module=sql --variation-module-options=dbtype:sqlite3,database:recdata/sqlite.db,dbtable:snmprec
-snmprec.py --agent-udpv4-endpoint=135.251.97.133 --use-getbulk --community=nms_snmp --output-file=recdata/mysql-ne133.snmprec \
-           --variation-module=sql --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim
+#snmprec.py --agent-udpv4-endpoint=135.251.97.133 --use-getbulk --community=nms_snmp --output-file=recdata/mysql-ne133.snmprec \
+#           --variation-module=sql --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim
+snmprec.py --agent-udpv4-endpoint=135.251.97.134 --use-getbulk --community=nms_snmp --output-file=recdata/mysql-ne134-oid5.snmprec --variation-module=sql --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim,dbtable:snmprec_oid5
+
 cp recdata/pss8-sql.snmprec ~/.snmp/data/nms_snmp.snmprec
 
 # put the captured MIB data as <communicty_str>.snmprec
