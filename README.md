@@ -50,6 +50,17 @@ mv xxx.snmprec ~/.snmpsim/data/<community_str>.snmprec
 # install redis
 sudo apt install redis
 
+# indexing captured SQL data
+MariaDB [none]> use snmpsim;
+MariaDB [snmpsim]> create unique index oidIndex on snmprec(oid(767));
+
+# edit venv/snmpsim/variation/sql.py to remove 'order by oid'
+<<<<
+cursor.execute('select oid from %s where oid>\'%s\' order by oid limit 1' % (dbTable, sqlOid))
+------
+cursor.execute('select oid from %s where oid>\'%s\' limit 1' % (dbTable, sqlOid))
+>>>>
+
 # start one SNMP agent simulator
 # snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=0.0.0.0:30161
 # snmpsimd.py --variation-module-options=redis:host:127.0.0.1,port:6379,db:0 --agent-udpv4-endpoint=0.0.0.0:30161
