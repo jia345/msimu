@@ -52,7 +52,46 @@ sudo apt install redis
 
 # indexing captured SQL data
 MariaDB [none]> use snmpsim;
-MariaDB [snmpsim]> create unique index oidIndex on snmprec(oid(767));
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [snmpsim]> show tables;
++-------------------+
+| Tables_in_snmpsim |
++-------------------+
+| pss8_ne134_rec    |
+| snmprec           |
+| snmprec_oid5      |
++-------------------+
+3 rows in set (0.00 sec)
+MariaDB [snmpsim]> describe pss8_ne134_rec;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| oid       | text | YES  |     | NULL    |       |
+| tag       | text | YES  |     | NULL    |       |
+| value     | text | YES  |     | NULL    |       |
+| maxaccess | text | YES  |     | NULL    |       |
++-----------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+MariaDB [snmpsim]> select count(*) from pss8_ne134_rec;
++----------+
+| count(*) |
++----------+
+|   232420 |
++----------+
+1 row in set (0.20 sec)
+MariaDB [snmpsim]> select oid from pss8_ne134_rec where oid>'    1.    3.    6.    1.    4.    1. 7483.    2.    1.    1.    2.    1.    1.    0'  limit 1;
+Empty set (0.22 sec)
+
+MariaDB [snmpsim]> create unique index oidIndex on pss8_ne134_rec(oid(767));
+Query OK, 0 rows affected (3.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [snmpsim]> select oid from pss8_ne134_rec where oid>'    1.    3.    6.    1.    4.    1. 7483.    2.    1.    1.    2.    1.    1.    0'  limit 1;
+Empty set (0.00 sec)
+
 
 # edit venv/snmpsim/variation/sql.py to remove 'order by oid'
 <<<<
