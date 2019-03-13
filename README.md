@@ -22,6 +22,10 @@ pip install snmpsim
 pip install snmpclitools
 pip install redis
 
+sudo service mariadb start   # /bin/systemctl start mariadb.service
+mysql -u root -p
+MariaDB [(none)]> set GLOBAL max_connections=1000;
+
 #
 # PERFORMANCE IMPROVEMENT
 #
