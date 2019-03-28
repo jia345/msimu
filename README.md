@@ -24,7 +24,8 @@ pip install redis
 
 sudo service mariadb start   # /bin/systemctl start mariadb.service
 mysql -u root -p
-MariaDB [(none)]> set GLOBAL max_connections=1000;
+MariaDB [(none)]> set GLOBAL max_connections=2000;
+MariaDB [(none)]> FLUSH HOSTS;
 
 #
 # PERFORMANCE IMPROVEMENT
