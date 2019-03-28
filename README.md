@@ -107,6 +107,23 @@ cursor.execute('select oid from %s where oid>\'%s\' order by oid limit 1' % (dbT
 ------
 cursor.execute('select oid from %s where oid>\'%s\' limit 1' % (dbTable, sqlOid))
 >>>>
+# to add a ping thread in init()
+17a18,19
+> import threading, time, signal
+> import sys
+25a28,32
+> def pingFunc(dbConn):
+>     while True:
+>         time.sleep(15)
+>         #cursor = dbConn.cursor()
+>         dbConn.ping(True)
+78a86,90
+>     else: # start a ping thread
+>         pass
+>         ping = threading.Thread(target = pingFunc, args = (dbConn,))
+>         ping.setDaemon(True)
+>         ping.start()
+
 
 # start one SNMP agent simulator
 # snmpsimd.py --data-dir=./data --agent-udpv4-endpoint=0.0.0.0:30161
