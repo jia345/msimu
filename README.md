@@ -54,6 +54,10 @@ mv xxx.snmprec ~/.snmpsim/data/<community_str>.snmprec
 # install redis
 sudo apt install redis
 
+MariaDB [none]> show global variables like '%timeout%';
+MariaDB [none]> set global wait_timeout=28800;
+MariaDB [none]> set global interactive_timeout=28800;
+
 # indexing captured SQL data
 MariaDB [none]> use snmpsim;
 Reading table information for completion of table and column names
