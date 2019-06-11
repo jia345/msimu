@@ -58,6 +58,7 @@ sudo apt install redis
 MariaDB [none]> show global variables like '%timeout%';
 MariaDB [none]> set global wait_timeout=28800;
 MariaDB [none]> set global interactive_timeout=28800;
+MariaDB [none]> set global max_allowed_packet=1073741824;
 
 # indexing captured SQL data
 MariaDB [none]> use snmpsim;
