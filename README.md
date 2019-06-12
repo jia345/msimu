@@ -26,6 +26,12 @@ sudo service mariadb start   # /bin/systemctl start mariadb.service
 mysql -u root -p
 MariaDB [(none)]> set GLOBAL max_connections=2000;
 MariaDB [(none)]> FLUSH HOSTS;
+MariaDB [snmpsim]> create table sim2 like pss8_ne134_rec;
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB [snmpsim]> insert into sim2 select * from pss8_ne134_rec;
+Query OK, 232509 rows affected (6.60 sec)
+Records: 232509  Duplicates: 0  Warnings: 0
 
 #
 # PERFORMANCE IMPROVEMENT
