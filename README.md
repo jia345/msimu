@@ -51,7 +51,18 @@ cp mibs/* $HOME/.snmp/mibs/
 #           --variation-module=sql --variation-module-options=dbtype:sqlite3,database:recdata/sqlite.db,dbtable:snmprec
 #snmprec.py --agent-udpv4-endpoint=135.251.97.133 --use-getbulk --community=nms_snmp --output-file=recdata/mysql-ne133.snmprec \
 #           --variation-module=sql --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim
-snmprec.py --agent-udpv4-endpoint=135.251.97.134 --use-getbulk --community=nms_snmp --output-file=recdata/mysql-ne134-oid5.snmprec --variation-module=sql --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim,dbtable:snmprec_oid5
+snmprec.py --agent-udpv4-endpoint=135.251.97.134 --use-getbulk --community=nms_snmp \
+           --output-file=recdata/mysql-ne134-oid5.snmprec --variation-module=sql \
+           --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim,dbtable:snmprec_oid5
+snmprec.py --agent-udpv4-endpoint=135.251.97.199 --use-getbulk --getbulk-repetitions=30 --community=nms_snmp \
+           --output-file=recdata/135.251.97.199.snmprec --variation-module=sql \
+           --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim,dbtable:clone_135_251_97_199 \
+           --logging-method=file:/home/xijia/rec-199.log
+snmprec.py --agent-udpv4-endpoint=135.251.97.201 --use-getbulk --getbulk-repetitions=30 --community=nms_snmp \
+           --output-file=recdata/135.251.97.201.snmprec --variation-module=sql \
+           --variation-module-options=dbtype:mysql.connector,user:root,database:snmpsim,dbtable:clone_135_251_97_201 \
+           --logging-method=file:/home/xijia/rec-201.log \
+           --log-level=debug
 
 cp recdata/pss8-sql.snmprec ~/.snmp/data/nms_snmp.snmprec
 
